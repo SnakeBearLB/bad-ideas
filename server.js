@@ -6,8 +6,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session')
 require('dotenv').config();
 
-const usersRouter = require('./models/user');
-// ideas router goes here
+var usersRouter = require('./routes/users.routes');
+var sessionsRouter = require('./routes/sessions.routes');
+var indexRouter = require('./routes/index');
 
 const app = express();
 const PORT = process.env.PORT || 3000
@@ -32,10 +33,11 @@ app.use(
   })
 );
 
-// Test connection with Index route (delete later)
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-})
+// middleware to connect routes
+app.use('/', indexRouter);
+app.use('/', usersRouter);
+app.use('/', sessionsRouter);
+
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
@@ -45,3 +47,4 @@ db.on('disconnected', () => console.log('mongod disconnected'));
 // listener
 app.listen(PORT, () => console.log(`server is listening on port: ${PORT}`));
 
+module.exports = app;
