@@ -5,10 +5,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session')
 require('dotenv').config();
+const methodOverride = require('method-override');
 
 var usersRouter = require('./routes/users.routes');
 var sessionsRouter = require('./routes/sessions.routes');
 var indexRouter = require('./routes/index');
+var ideasRouter = require('./routes/ideas.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000
@@ -24,6 +26,9 @@ const db = mongoose.connection;
 //body parser middleware (gives access to req.body)
 app.use(express.urlencoded({ extended: true }));
 
+// method override
+app.use(methodOverride('_method'));
+
 // middleware for express sessions
 app.use(
   session({
@@ -37,6 +42,7 @@ app.use(
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', sessionsRouter);
+app.use('/', ideasRouter);
 
 
 // Error / success

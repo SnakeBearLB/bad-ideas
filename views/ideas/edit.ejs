@@ -7,9 +7,8 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="/create_idea/<%= currentUser._id%>" method="POST">
-    <label for="idea">Idea</label>
-    <input  type="text" name="text" id="idea">
+  <form action="/ideas_put/<%=idea._id%>?_method=PUT" method="POST">
+    <input type="text" name="text" value="<%=idea.text%>">
     <input type="submit">
   </form>
 </body>
