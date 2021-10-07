@@ -1,6 +1,4 @@
 const bcrypt = require('bcrypt');
-const express = require('express');
-const userRouter = express.Router();
 const User = require('../models/user.js');
 const Ideas = require('../models/ideas');
 
@@ -15,11 +13,11 @@ const new_login = (req, res) => {
 // Create (account route)
 // userRouter.post
 const create_account = (req, res) => {
-  // overwrite the use password with the hashed password, then pass that into our database
+  // overwrite the use password with the hashed password 
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-
+  // pass hashed password into database
   User.create(req.body, (error, createdUser) => {
-    res.send('users/new.ejs');
+    res.redirect('/login');
   });
 };
 
@@ -28,9 +26,9 @@ const create_account = (req, res) => {
 const show_dashboard = (req, res) => {
   User.findById(req.params.id).populate('ideas').exec((err, user) => {
     Ideas.find({_id: {$nin: user.ideas}}).exec((err, ideas) => {
-      console.log(ideas);
       res.render('users/dashboard.ejs', {
-        text: 'Idea Detail', user, ideas
+        text: 'Idea Detail', user, ideas,
+        currentUser: req.session.currentUser._id,
       });
     })
   })

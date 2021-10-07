@@ -7,18 +7,19 @@
   <title>Document</title>
 </head>
 <body>
+  <%- include('../partials/nav.ejs')  %>
   <h1>My Ideas</h1>
   <ul>
-    <% ideas.forEach((idea) => { %>
+    <% user.ideas.forEach((idea) => { %>
       <li>
           <%=idea.text%>
-          <a href="/<%=idea._id%>/edit_idea">Edit</a>
+          <a href="/edit_idea/<%=idea._id%>">Edit</a>
           <form action="/delete_idea/<%=idea._id%>?_method=DELETE" method="POST">
             <input type="submit" value="Delete">
           </form>
       </li>
     <% }) %>
   </ul>
-  <a href="/idea/new/<%=user._id%>">New Idea</a>
+  <a href="/new_idea/<%=user._id%>">New Idea</a>
 </body>
 </html>

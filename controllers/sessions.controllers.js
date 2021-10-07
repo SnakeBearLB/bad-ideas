@@ -1,7 +1,5 @@
 // Dependencies
-const express = require('express');
 const bcrypt = require('bcrypt');
-const sessionsRouter = express.Router();
 const User = require('../models/user.js');
 
 
@@ -39,7 +37,6 @@ const create_login = (req, res) => {
         if (passwordMatches) {
           // add the user to our session
           req.session.currentUser = foundUser;
-          console.log(foundUser);
           // redirect back to our home page
           res.redirect('/user/choice');
         } else {

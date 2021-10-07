@@ -10,9 +10,7 @@ router.get('/login', sessionControllers.new_login);
 router.post('/', sessionControllers.create_login);
 
 //Delete
-router.delete('/', sessionControllers.logout);
+router.delete('/logout', sessionControllers.logout);
 
-//Show
-// router.get('/logged_in', sessionControllers.user_dash);
 
 module.exports = router;

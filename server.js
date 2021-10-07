@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users.routes');
 var sessionsRouter = require('./routes/sessions.routes');
 var indexRouter = require('./routes/index');
 var ideasRouter = require('./routes/ideas.routes');
+var activitiesRouter = require('./routes/activities.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000
@@ -43,7 +44,7 @@ app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', sessionsRouter);
 app.use('/', ideasRouter);
-
+app.use('/', activitiesRouter);
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is mongod not running?'));

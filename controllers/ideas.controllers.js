@@ -1,7 +1,6 @@
-const express = require('express');
+// Dependencies
 const Ideas = require('../models/ideas');
 const User = require('../models/user');
-const sessionsRouter = express.Router();
 
 
 // new
@@ -29,11 +28,17 @@ const put_idea = (req, res) => {
 // create
 const create_idea = (req, res) => {
   Ideas.create(req.body, (err, createdIdea) => {
-    res.redirect(`/users/dashboard/${req.session.currentUser._id}`)
+    User.findById(req.params.id, (err, user) => {
+      user.ideas.push(createdIdea._id);
+      user.save((err) => {
+        res.redirect(`/users/dashboard/${req.session.currentUser._id}`);
+      })
+    })
   });
 };
 
-// delete
+
+// Edit
 const edit_idea = (req, res) => {
   Ideas.findById(req.params.id, (err, foundIdea) => {
     res.render('ideas/edit.ejs', {

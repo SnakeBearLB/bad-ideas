@@ -10,7 +10,7 @@
 <body>
 	<%- include('../partials/nav.ejs')  %>
 	<h1>Register</h1>
-	<form action='/create_account/<%= currentUser._id%>' method='POST'>
+	<form action='/create_account' method='POST'>
 		<label for="email">Email:</label>
 		<input type="email" name="email" id="email" />
 
