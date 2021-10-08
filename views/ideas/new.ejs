@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+
+<%- include('../partials/header.ejs')  %>
+<div class="form-container new-idea-input-field">
   <form action="/create_idea/<%= currentUser._id%>" method="POST">
-    <label for="idea">Idea</label>
-    <input  type="text" name="text" id="idea">
-    <input type="submit">
+    <input  type="text" name="text" id="idea" placeholder="new ideea">
+    <div class="input-container">
+      <input type="submit">
+    </div>
   </form>
-</body>
-</html>
+</div>
+
+<%- include('../partials/footer.ejs')  %>

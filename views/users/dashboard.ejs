@@ -1,25 +1,55 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+  <link rel='stylesheet' href='/style.css'/>
 </head>
 <body>
-  <%- include('../partials/nav.ejs')  %>
-  <h1>My Ideas</h1>
-  <ul>
-    <% user.ideas.forEach((idea) => { %>
-      <li>
-          <%=idea.text%>
-          <a href="/edit_idea/<%=idea._id%>">Edit</a>
-          <form action="/delete_idea/<%=idea._id%>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete">
-          </form>
-      </li>
-    <% }) %>
-  </ul>
-  <a href="/new_idea/<%=user._id%>">New Idea</a>
-</body>
-</html>
+
+  <nav>
+    <% if(currentUser) { %>
+      <a href="/">Home</a>
+      <a href="/users/dashboard/<%= user._id %>">Dashboard</a>
+      <a href="/users/activity/<%= user._id%>">Activity</a>
+      <form action="/logout?_method=DELETE" method="POST">
+        <input type="submit" value="Log Out" />
+      </form>
+    <% } else { %>
+      <a href="/">Home</a>
+      <a href="/new_login">Create Account</a>
+      <a href="/login">Login</a>
+    <% } %>
+  </nav>
+  
+  <div class="header-titles">
+    <h1>My Ideas</h1>
+  </div>
+  <div class="new-idea-box">
+    <a href="/new_idea/<%=user._id%>">
+      <div class="new-idea-link-box">
+        <p class="new-idea-link">New Idea</p>
+      </div>
+    </a>
+  </div>
+    <ul class="ideas-container">
+      <% user.ideas.forEach((idea) => { %>
+        <li class="li-idea">
+            <div class="idea-card">
+              <%=idea.text%>
+            </div>
+            <a href="/edit_idea/<%=idea._id%>">Edit</a>
+            <form action="/delete_idea/<%=idea._id%>?_method=DELETE" method="POST">
+              <input type="submit" value="Delete">
+            </form>
+        </li>
+      <% }) %>
+    </ul>
+
+<%- include('../partials/footer.ejs')  %>

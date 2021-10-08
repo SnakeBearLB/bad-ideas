@@ -27,6 +27,8 @@ const db = mongoose.connection;
 //body parser middleware (gives access to req.body)
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(__dirname + '/public'));
+
 // method override
 app.use(methodOverride('_method'));
 
@@ -39,6 +41,11 @@ app.use(
   })
 );
 
+// app.use(function(req, res, next) {
+//   res.locals.user._id = req.session.user._id;
+//   next();
+// });
+
 // middleware to connect routes
 app.use('/', indexRouter);
 app.use('/', usersRouter);
@@ -48,7 +55,7 @@ app.use('/', activitiesRouter);
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
-db.on('connected', () => console.log('mongod connected: ', MONGODB_URL));
+db.on('connected', () => console.log('mongod connected'));
 db.on('disconnected', () => console.log('mongod disconnected'));
 
 // listener

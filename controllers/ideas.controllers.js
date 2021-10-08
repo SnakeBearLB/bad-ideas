@@ -42,7 +42,8 @@ const create_idea = (req, res) => {
 const edit_idea = (req, res) => {
   Ideas.findById(req.params.id, (err, foundIdea) => {
     res.render('ideas/edit.ejs', {
-      idea: foundIdea
+      idea: foundIdea,
+      currentUser: req.session.currentUser._id
     });
   });
 };

@@ -13,8 +13,9 @@ router.get('/', (req, res) => {
 router.get('/user/choice', (req, res) => {
   res.render('activityOrDash.ejs', {
     currentUser: req.session.currentUser,
-  })
-})
+    title: 'dashboard',
+  });
+});
 
 
 module.exports = router;

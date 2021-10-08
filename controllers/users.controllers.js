@@ -29,6 +29,7 @@ const show_dashboard = (req, res) => {
       res.render('users/dashboard.ejs', {
         text: 'Idea Detail', user, ideas,
         currentUser: req.session.currentUser._id,
+        title: 'dashboard',
       });
     })
   })
