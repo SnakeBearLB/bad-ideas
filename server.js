@@ -35,7 +35,7 @@ app.use(methodOverride('_method'));
 // middleware for express sessions
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: 'mintywintermud',
     resave: false,
     saveUninitialized: false
   })
