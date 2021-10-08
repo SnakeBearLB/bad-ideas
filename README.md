@@ -29,6 +29,10 @@ Login         |  Choosing Dashboard or Activity
 
 ## Getting Started  
 
+click [here](https://bad-ideas-app.herokuapp.com/) to interact with Data Moon!
+
+- Create Account or Login
+- If you create an idea you will first have the choice of seeing the logs of your ideas on your dashboard, or doing an activity.
 
 
 
@@ -36,5 +40,6 @@ Login         |  Choosing Dashboard or Activity
 
 ## Future Enhancements
 
-- More interactive activities
+- Finish current activity build
+- More interactive activities to inspire ideas
 - Saving ideas while doing activity
